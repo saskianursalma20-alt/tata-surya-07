@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Tata Surya</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(30, 64, 175, 0.35), transparent 60%),
+    radial-gradient(ellipse at 85% 80%, rgba(107, 33, 168, 0.3), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, #101a3a, #050816 100%);
+  background-color: #050816;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #8ddcff;
+      font-size: 25px;
+    }
+
+    header p {
+      color: #b8c5df;
+      font-size: 12px;
+    }
+
+    #universe {
+      transform: scale(1);
+transform-origin: center center;
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 100px);
+      overflow: visible;
+      
+    }
+    #sun {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    #fff9bd,
+    #ffcc33 40%,
+    #ff7b00 75%,
+    #ff4500
+  );
+  box-shadow:
+    0 0 20px #ffb52e,
+    0 0 50px #ff8c00,
+    0 0 90px #ff6500;
+    }
+    
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  border: 1px solid rgba(160, 190, 255, 0.25);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#orbit-mercury {
+  width: 125px;
+  height: 125px;
+}
+
+    
+.mercury-path {
+  position: absolute;
+  width: 100%;
+height: 100%;
+transform-origin: center center;
+  inset: 0;
+  border-radius: 50%;
+  animation: mercuryOrbit 2.4s linear infinite;
+}
+
+@keyframes mercuryOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+#mercury {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  
+background:
+  radial-gradient(circle at 28% 30%, #625e57 0 8%, transparent 10%),
+  radial-gradient(circle at 68% 65%, #514d47 0 12%, transparent 14%),
+  radial-gradient(circle at 75% 25%, #d0c8ba 0 6%, transparent 8%),
+  radial-gradient(circle at 35% 75%, #777168 0 9%, transparent 11%),
+  radial-gradient(circle at 30% 25%, #c8c2b8, #89847c 55%, #514d48);
+
+
+  box-shadow:
+    0 0 5px rgba(180, 174, 163, 0.35);
+}
+
+
+
+
+
+#orbit-venus {
+  width: 180px;
+  height: 180px;
+  
+}
+
+
+.venus-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: venusOrbit 6.2s linear infinite;
+}
+
+@keyframes venusOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+#venus {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  
+background:
+  radial-gradient(ellipse at 25% 30%, #f7dfa5 0 9%, transparent 12%),
+  radial-gradient(ellipse at 70% 25%, #b98d53 0 10%, transparent 14%),
+  radial-gradient(ellipse at 65% 70%, #f4d99b 0 12%, transparent 16%),
+  radial-gradient(ellipse at 30% 75%, #c7a16a 0 9%, transparent 13%),
+  radial-gradient(circle at 30% 30%, #fff1bd, #dfbd79 55%, #a77d43);
+
+
+  box-shadow:
+    0 0 8px rgba(255, 220, 155, 0.35);
+}
+
+#orbit-earth {
+  width: 245px;
+  height: 245px;
+  
+}
+
+
+.earth-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: earthOrbit 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes earthOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+#earth {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 10;
+cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+z-index: 10;
+
+  
+background:
+  radial-gradient(ellipse at 28% 30%, #78c95f 0 9%, transparent 11%),
+  radial-gradient(ellipse at 42% 42%, #32894b 0 13%, transparent 16%),
+  radial-gradient(ellipse at 72% 28%, #8acb63 0 8%, transparent 11%),
+  radial-gradient(ellipse at 68% 68%, #267947 0 15%, transparent 18%),
+  radial-gradient(ellipse at 30% 75%, #b3d878 0 7%, transparent 10%),
+  radial-gradient(circle at 30% 30%, #a8edff, #2785e8 50%, #103b91);
+
+
+  box-shadow:
+    0 0 9px rgba(67, 157, 255, 0.6);
+}
+
+#orbit-mars {
+  width: 305px;
+  height: 305px;
+  
+}
+
+    
+.mars-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: marsOrbit 18.8s linear infinite;
+}
+
+@keyframes marsOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#mars {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle at 28% 30%, #8f3927 0 9%, transparent 12%),
+    radial-gradient(ellipse at 68% 65%, #a94c32 0 13%, transparent 16%),
+    radial-gradient(circle at 75% 25%, #e18a62 0 7%, transparent 10%),
+    radial-gradient(circle at 30% 30%, #f4a078, #c65336 55%, #782b25);
+
+  box-shadow:
+    0 0 7px rgba(235, 103, 65, 0.35);
+}
+
+#orbit-jupiter {
+  width: 375px;
+  height: 375px;
+  
+}
+
+
+
+#jupiter {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(ellipse at 65% 70%, #a85e42 0 10%, transparent 13%),
+    repeating-linear-gradient(
+      0deg,
+      #b77b59 0 3px,
+      #e7c9a2 3px 6px,
+      #d5a982 6px 9px,
+      #f0d8b5 9px 12px
+    );
+
+  box-shadow:
+    0 0 10px rgba(224, 176, 132, 0.3);
+}
+
+#orbit-saturn {
+  width: 445px;
+  height: 445px;
+  
+}
+
+    #orbit-uranus {
+  width: 510px;
+  height: 510px;
+    }
+    
+    #orbit-neptune {
+  width: 575px;
+  height: 575px;
+    }
+    
+#saturn {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background: repeating-linear-gradient(
+    0deg,
+    #b69a70 0 3px,
+    #ead8b2 3px 6px,
+    #d0b78d 6px 9px,
+    #f3e4c5 9px 12px
+  );
+
+  box-shadow:
+    0 0 8px rgba(231, 208, 166, 0.3);
+}
+
+#saturn::after {
+  content: "";
+  position: absolute;
+  width: 36px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  border: 3px solid #d7c29b;
+  border-left-color: #a58a60;
+  border-right-color: #f0dfba;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.jupiter-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: jupiterOrbit 118.6s linear infinite;
+}
+
+@keyframes jupiterOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+    }
+    .saturn-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: saturnOrbit 294.6s linear infinite;
+}
+
+@keyframes saturnOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+    }
+    #uranus {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #d5ffff, #7de3e8 45%, #318cba);
+  box-shadow: 0 0 10px #70e8ff;
+  }
+    .uranus-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: uranusOrbit 840s linear infinite;
+}
+
+@keyframes uranusOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+    }
+
+    #neptune {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #a9eaff, #357bff 45%, #102c91);
+  box-shadow: 0 0 10px #397bff;
+      z-index: 10;
+position: relative;
+    }
+    .neptune-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: neptuneOrbit 1648s linear infinite;
+}
+
+@keyframes neptuneOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+      }
+    #zoom-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#zoom-controls button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #8ddcff;
+  border-radius: 12px;
+  background: rgba(15, 30, 65, 0.9);
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+   #planet-info {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 82%;
+max-width: 340px;
+max-height: 70vh;
+padding: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(24, 39, 82, 0.98),
+    rgba(5, 10, 30, 0.98)
+  );
+  border: 1px solid #8ddcff;
+  border-radius: 24px;
+  color: white;
+  z-index: 300;
+  box-shadow: 0 0 35px rgba(80, 180, 255, 0.35);
+} 
+
+#planet-info button {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(141, 220, 255, 0.5);
+  border-radius: 50%;
+  background: rgba(141, 220, 255, 0.12);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  }
+
+
+#planet-name {
+  color: #8ddcff;
+  margin-top: 8px;
+}
+
+#planet-desc {
+  font-size: 14px;
+  line-height: 1.5;
+      }
+    .orbit,
+.mercury-path,
+.venus-path,
+.earth-path,
+.mars-path,
+.jupiter-path,
+.saturn-path,
+.uranus-path,
+.neptune-path {
+  pointer-events: none;
+}
+
+#mercury,
+#venus,
+#earth,
+#mars,
+#jupiter,
+#saturn,
+#uranus,
+#neptune {
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 20;
+  }
+    #planet-extra {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(141, 220, 255, 0.3);
+  font-size: 13px;
+  line-height: 1.7;
+  color: #d6e5ff;
+}
+
+#planet-extra strong {
+  color: #8ddcff;
+}
+
+#planet-info {
+  box-sizing: border-box;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1> SISTEM TATA SURYA </h1>
+    <p>Jelajahi planet-planet di alam semesta</p>
+  </header>
+
+  <div id="universe">
+    <div id="zoom-controls">
+  <button onclick="zoomIn()">＋</button>
+  <button onclick="zoomOut()">－</button>
+  <button onclick="resetZoom()">⟲</button>
+    </div>
+  <div id="sun"></div>    
+   
+
+<div class="orbit" id="orbit-saturn">
+  <div class="saturn-path">
+    <div id="saturn"></div>
+  </div>
+</div>
+
+
+<div class="orbit" id="orbit-jupiter">
+  <div class="jupiter-path">
+    <div id="jupiter"></div>
+  </div>
+</div>
+
+
+
+<div class="orbit" id="orbit-mars">
+  <div class="mars-path">
+    <div id="mars"></div>
+  </div>
+</div>
+
+
+    
+<div class="orbit" id="orbit-earth">
+  <div class="earth-path">
+    <div id="earth"></div>
+  </div>
+</div>
+
+
+<div class="orbit" id="orbit-venus">
+  <div class="venus-path">
+    <div id="venus"></div>
+  </div>
+</div>
+
+    
+<div class="orbit" id="orbit-mercury">
+  <div class="mercury-path">
+    <div id="mercury"></div>
+  </div>
+</div>
+
+    <div class="orbit" id="orbit-uranus">
+  <div class="uranus-path">
+    <div id="uranus"></div>
+  </div>
+
+      <div class="orbit" id="orbit-neptune">
+  <div class="neptune-path">
+    <div id="neptune"></div>
+  </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+let zoomLevel = 1;
+const universe = document.getElementById("universe");
+
+function applyZoom() {
+  universe.style.transform = `scale(${zoomLevel})`;
+}
+
+function zoomIn() {
+  zoomLevel = Math.min(zoomLevel + 0.1, 2);
+  applyZoom();
+}
+
+function zoomOut() {
+  zoomLevel = Math.max(zoomLevel - 0.1, 0.4);
+  applyZoom();
+}
+
+function resetZoom() {
+  zoomLevel = 1;
+  applyZoom();
+}
+  const planetData = {
+  mercury: {
+    name: "Merkurius",
+    desc: "Planet terkecil dan planet terdekat dari Matahari.",
+    extra: `
+      <strong> Diameter:</strong> 4.879 km<br>
+      <strong> Jarak dari Matahari:</strong> 57,9 juta km<br>
+      <strong> Rotasi:</strong> 58,6 hari Bumi<br>
+      <strong> Revolusi:</strong> 88 hari Bumi<br><br>
+      <strong> Fakta unik:</strong> Merkurius memiliki perubahan suhu ekstrem antara siang dan malam.
+    `
+  },
+  venus: {
+    name: "Venus",
+    desc: "Planet terpanas di tata surya karena atmosfernya sangat tebal.",
+    extra: `
+      <strong> Diameter:</strong> 12.104 km<br>
+      <strong> Jarak dari Matahari:</strong> 108,2 juta km<br>
+      <strong> Rotasi:</strong> 243 hari Bumi<br>
+      <strong> Revolusi:</strong> 225 hari Bumi<br><br>
+      <strong> Fakta unik:</strong> Venus berotasi berlawanan arah dengan kebanyakan planet.
+    `
+  },
+  earth: {
+    name: "Bumi",
+    desc: "Rumah kita, tempat yang diketahui memiliki kehidupan.",
+    extra: `
+      <strong> Diameter:</strong> 12.742 km<br>
+      <strong> Jarak dari Matahari:</strong> 149,6 juta km<br>
+      <strong> Rotasi:</strong> sekitar 24 jam<br>
+      <strong> Revolusi:</strong> 365,25 hari<br><br>
+      <strong> Fakta unik:</strong> Bumi memiliki air cair di permukaan dan satu satelit alami, yaitu Bulan.
+    `
+  },
+  mars: {
+    name: "Mars",
+    desc: "Planet merah yang menjadi salah satu tujuan penelitian eksplorasi luar angkasa.",
+    extra: `
+      <strong> Diameter:</strong> 6.779 km<br>
+      <strong> Jarak dari Matahari:</strong> 227,9 juta km<br>
+      <strong> Rotasi:</strong> 24 jam 37 menit<br>
+      <strong> Revolusi:</strong> 687 hari Bumi<br><br>
+      <strong> Fakta unik:</strong> Mars memiliki Olympus Mons, salah satu gunung berapi terbesar yang diketahui di tata surya.
+    `
+  },
+  jupiter: {
+    name: "Jupiter",
+    desc: "Planet terbesar di tata surya dan termasuk kelompok raksasa gas.",
+    extra: `
+      <strong> Diameter:</strong> 139.820 km<br>
+      <strong> Jarak dari Matahari:</strong> 778,6 juta km<br>
+      <strong> Rotasi:</strong> sekitar 9 jam 56 menit<br>
+      <strong> Revolusi:</strong> 11,86 tahun Bumi<br><br>
+      <strong> Fakta unik:</strong> Jupiter memiliki Bintik Merah Besar, badai raksasa yang telah diamati selama berabad-abad.
+    `
+  },
+  saturn: {
+    name: "Saturnus",
+    desc: "Raksasa gas yang terkenal dengan sistem cincinnya.",
+    extra: `
+      <strong> Diameter:</strong> 116.460 km<br>
+      <strong> Jarak dari Matahari:</strong> 1,43 miliar km<br>
+      <strong> Rotasi:</strong> sekitar 10,7 jam<br>
+      <strong> Revolusi:</strong> 29,4 tahun Bumi<br><br>
+      <strong> Fakta unik:</strong> Cincin Saturnus tersusun terutama dari partikel es dan pecahan batu.
+    `
+  },
+  uranus: {
+    name: "Uranus",
+    desc: "Raksasa es berwarna biru kehijauan yang berotasi dengan kemiringan ekstrem.",
+    extra: `
+      <strong> Diameter:</strong> 50.724 km<br>
+      <strong> Jarak dari Matahari:</strong> 2,87 miliar km<br>
+      <strong> Rotasi:</strong> sekitar 17 jam<br>
+      <strong> Revolusi:</strong> 84 tahun Bumi<br><br>
+      <strong> Fakta unik:</strong> Sumbu rotasi Uranus miring sekitar 98 derajat sehingga tampak seperti berputar menyamping.
+    `
+  },
+  neptune: {
+    name: "Neptunus",
+    desc: "Planet terjauh dari Matahari di antara delapan planet.",
+    extra: `
+      <strong> Diameter:</strong> 49.244 km<br>
+      <strong> Jarak dari Matahari:</strong> 4,5 miliar km<br>
+      <strong> Rotasi:</strong> sekitar 16 jam<br>
+      <strong> Revolusi:</strong> 165 tahun Bumi<br><br>
+      <strong> Fakta unik:</strong> Neptunus memiliki angin yang sangat kencang dan atmosfer yang didominasi hidrogen, helium, serta metana.
+    `
+  }
+};
+
+document.querySelectorAll(
+  "#mercury, #venus, #earth, #mars, #jupiter, #saturn, #uranus, #neptune"
+).forEach(function(planet) {
+  planet.style.pointerEvents = "auto";
+  planet.style.cursor = "pointer";
+
+  planet.addEventListener("click", function(event) {
+    event.stopPropagation();
+
+    const info = planetData[planet.id];
+
+    document.getElementById("planet-name").textContent = info.name;
+    document.getElementById("planet-desc").textContent = info.desc;
+    document.getElementById("planet-extra").innerHTML = info.extra;
+    document.getElementById("planet-info").style.display = "block";
+  });
+});
+
+function closeInfo() {
+  document.getElementById("planet-info").style.display = "none";
+}
+  </script>
+  <div id="planet-info">
+  <button onclick="closeInfo()">✕</button>
+  <h2 id="planet-name">Nama Planet</h2>
+  <p id="planet-desc">Informasi planet akan muncul di sini.</p>
+    <div id="planet-extra"></div>
+  </div>
+</body>
+</html>
